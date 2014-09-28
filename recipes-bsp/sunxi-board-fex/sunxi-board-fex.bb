@@ -9,7 +9,7 @@ PR = "r0"
 
 SRC_URI = "git://github.com/linux-sunxi/sunxi-boards.git;protocol=git"
 # Increase PV with SRCREV change
-SRCREV = "5e63e3da42254d3c23eb6436a03ed1d32fb11e98"
+SRCREV = "fb91bf9f699475df09146614d0e03d71b3cb5a4d"
 
 S = "${WORKDIR}/git"
 SUNXI_FEX_FILE_mele = "sys_config/a10/mele_a1000.fex"
