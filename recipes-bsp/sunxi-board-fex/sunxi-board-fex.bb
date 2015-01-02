@@ -9,7 +9,7 @@ PR = "r0"
 
 SRC_URI = "git://github.com/linux-sunxi/sunxi-boards.git;protocol=git"
 # Increase PV with SRCREV change
-SRCREV = "442f0669fec0689dda3e529bcd8be9e554868b5f"
+SRCREV = "9f46830ba50532d40ff2533c2e59a8fd8c470ade"
 
 S = "${WORKDIR}/git"
 SUNXI_FEX_FILE_mele = "sys_config/a10/mele_a1000.fex"
@@ -20,6 +20,7 @@ SUNXI_FEX_FILE_olinuxino-a13 = "sys_config/a13/a13-olinuxino.fex"
 SUNXI_FEX_FILE_olinuxino-a20 = "sys_config/a20/a20-olinuxino_micro.fex"
 SUNXI_FEX_FILE_olinuxino-a20som = "sys_config/a20/olimex_a20_som.fex"
 SUNXI_FEX_FILE_olinuxino-a20lime = "sys_config/a20/a20-olinuxino_lime.fex"
+SUNXI_FEX_FILE_olinuxino-a20lime2 = "sys_config/a20/a20-olinuxino_lime2.fex"
 SUNXI_FEX_FILE_cubieboard = "sys_config/a10/cubieboard.fex"
 SUNXI_FEX_FILE_cubieboard2 = "sys_config/a20/cubieboard2.fex"
 SUNXI_FEX_FILE_cubietruck= "sys_config/a20/cubietruck.fex"
@@ -55,4 +56,4 @@ do_package_write_rpm[noexec] = "1"
 do_package_write_deb[noexec] = "1"
 do_populate_sysroot[noexec] = "1"
 
-COMPATIBLE_MACHINE = "(mele|meleg|olinuxino-a10s|olinuxino-a10|olinuxino-a13|olinuxino-a20|olinuxino-a20som|olinuxino-a20lime|cubieboard|cubieboard2|cubietruck)"
+COMPATIBLE_MACHINE = "(mele|meleg|olinuxino-a10s|olinuxino-a10|olinuxino-a13|olinuxino-a20|olinuxino-a20som|olinuxino-a20lime|olinuxino-a20lime2|cubieboard|cubieboard2|cubietruck)"

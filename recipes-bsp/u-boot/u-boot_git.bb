@@ -25,7 +25,7 @@ PE = "1"
 PV = "v2015.01+git${SRCPV}"
 
 # Corresponds to tag v2015.01-rc3
-SRCREV = "32fdf0e4d82bdca5d64d86330e461e59685f9959"
+SRCREV = "125738e819a3b9d15210794b3dcef9f4d9bcf866"
 
 
 S = "${WORKDIR}/git"
