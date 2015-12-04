@@ -35,7 +35,6 @@ IMAGE_DEPENDS_sunxi-sdimg += " \
 			dosfstools-native \
 			virtual/kernel \
 			virtual/bootloader \
-                        sunxi-board-fex \
 			"
 
 rootfs[depends] += "virtual/kernel:do_deploy sunxi-board-fex:do_deploy"
