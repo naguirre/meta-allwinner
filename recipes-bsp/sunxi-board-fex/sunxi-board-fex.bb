@@ -7,7 +7,7 @@ DEPENDS = "sunxi-tools-native"
 PV = "1.1+git${SRCPV}"
 PR = "r0"
 
-COMPATIBLE_MACHINE = "(sun4i|sun5i|sun7i)"
+COMPATIBLE_MACHINE = "(sun4i|sun5i|sun7i|sun8i)"
 
 SRC_URI = "git://github.com/linux-sunxi/sunxi-boards.git;protocol=git"
 # Increase PV with SRCREV change

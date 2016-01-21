@@ -1,0 +1,9 @@
+diff --git a/configs/orangepi_plus_defconfig b/configs/orangepi_plus_defconfig
+index 003a9c6..436738f 100644
+--- a/configs/orangepi_plus_defconfig
++++ b/configs/orangepi_plus_defconfig
+@@ -12,3 +12,4 @@ CONFIG_SPL=y
+ # CONFIG_CMD_FLASH is not set
+ # CONFIG_CMD_FPGA is not set
+ CONFIG_CMD_GPIO=y
++CONFIG_OLD_SUNXI_KERNEL_COMPAT=y

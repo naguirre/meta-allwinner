@@ -27,6 +27,7 @@ DEFAULT_PREFERENCE_sun7i="1"
 DEFAULT_PREFERENCE_sun8i="1"
 
 SRC_URI += "file://boot.cmd \
+	    file://orangepiplus-old-sunxi-kernel-compat.patch \
 "
 
 SRCREV = "fa85e826c16b9ce1ad302a57e9c4b24db0d8b930"
