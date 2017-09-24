@@ -66,6 +66,12 @@ IMAGE_CMD_sunxi-sdimg () {
 
 	mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin ::uImage
 
+	# Clean device tree dir target
+	if [ ${SOC_FAMILY} = "sun50i" ]; then
+		mkdir -p ${DEPLOY_DIR_IMAGE}/${MANUFACTURER}
+		rm -rf ${DEPLOY_DIR_IMAGE}/${MANUFACTURER}/*
+	fi
+
 	# Copy device tree file
 	if test -n "${KERNEL_DEVICETREE}"; then
 		for DTS_FILE in ${KERNEL_DEVICETREE}; do
@@ -74,10 +80,17 @@ IMAGE_CMD_sunxi-sdimg () {
 				kernel_bin="`readlink ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${MACHINE}.bin`"
 				kernel_bin_for_dtb="`readlink ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb | sed "s,$DTS_BASE_NAME,${MACHINE},g;s,\.dtb$,.bin,g"`"
 				if [ $kernel_bin = $kernel_bin_for_dtb ]; then
-					mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb ::/${DTS_BASE_NAME}.dtb
+					if [ ${SOC_FAMILY} = "sun50i" ]; then
+						cp ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb ${DEPLOY_DIR_IMAGE}/${MANUFACTURER}/${DTS_BASE_NAME}.dtb
+					else
+						mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${KERNEL_IMAGETYPE}-${DTS_BASE_NAME}.dtb ::/${DTS_BASE_NAME}.dtb
+					fi
 				fi
 			fi
 		done
+		if [ ${SOC_FAMILY} = "sun50i" ]; then
+			mcopy -i ${WORKDIR}/boot.img -s ${DEPLOY_DIR_IMAGE}/${MANUFACTURER} ::
+		fi
 	fi
 
 	if [ -e "${DEPLOY_DIR_IMAGE}/fex.bin" ]
@@ -104,7 +117,12 @@ IMAGE_CMD_sunxi-sdimg () {
 		dd if=${SDIMG_ROOTFS} of=${SDIMG} conv=notrunc seek=1 bs=$(expr 1024 \* ${BOOT_SPACE_ALIGNED} + ${IMAGE_ROOTFS_ALIGNMENT} \* 1024) && sync && sync
 	fi
 
-	#write u-boot and spl at the beginint of sdcard in one shot
-	dd if=${DEPLOY_DIR_IMAGE}/u-boot-sunxi-with-spl.bin of=${SDIMG} bs=1024 seek=8 conv=notrunc
-
+	# Write u-boot and spl at the beginning of sdcard
+	if [ ${SOC_FAMILY} = "sun50i" ]
+	then
+		dd if=${DEPLOY_DIR_IMAGE}/sunxi-spl.bin of=${SDIMG} bs=1024 seek=8 conv=notrunc
+		dd if=${DEPLOY_DIR_IMAGE}/u-boot.itb of=${SDIMG} bs=1024 seek=40 conv=notrunc
+	else
+		dd if=${DEPLOY_DIR_IMAGE}/u-boot-sunxi-with-spl.bin of=${SDIMG} bs=1024 seek=8 conv=notrunc
+	fi
 }
