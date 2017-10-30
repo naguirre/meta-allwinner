@@ -5,6 +5,8 @@ include conf/machine/include/soc-family.inc
 MACHINE_SOCARCH_SUFFIX ?= ""
 MACHINE_SOCARCH_SUFFIX_sun4i = "-sun4i"
 
+MANUFACTURER ?= "allwinner"
+
 PREFERRED_PROVIDER_virtual/xserver = "xserver-xorg"
 XSERVER = "xserver-xorg \
            xf86-video-fbturbo \
