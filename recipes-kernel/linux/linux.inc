@@ -6,6 +6,7 @@ LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
 INC_PR = "r0"
 
 inherit kernel siteinfo
+require recipes-kernel/linux/linux-yocto.inc
 
 # Enable OABI compat for people stuck with obsolete userspace
 ARM_KEEP_OABI ?= "0"
@@ -35,7 +36,6 @@ kernel_conf_variable() {
 }
 
 do_configure_prepend() {
-    echo "" > ${B}/.config
     CONF_SED_SCRIPT=""
 
     #
