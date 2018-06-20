@@ -111,6 +111,9 @@ do_configure_prepend() {
         kernel_conf_variable CMDLINE \"${CMDLINE_NFSROOT_USB} ${CMDLINE_DEBUG}\"
     fi
 
+    sed -e "${CONF_SED_SCRIPT}" \
+    < '${WORKDIR}/defconfig' >>'${B}/.config'
+
     yes '' | oe_runmake -C ${S} O=${B} oldconfig
 }
 
