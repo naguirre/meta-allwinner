@@ -1,7 +1,7 @@
 SECTION = "kernel"
 DESCRIPTION = "Mainline Linux kernel"
 LICENSE = "GPLv2"
-LIC_FILES_CHKSUM = "file://COPYING;md5=d7810fab7487fb0aad327b76f1be7cd7"
+LIC_FILES_CHKSUM = "file://COPYING;md5=bbea815ee2795b2f4230826c0c6b8814"
 COMPATIBLE_MACHINE = "(sun4i|sun5i|sun7i|sun8i|sun50i)"
 
 inherit kernel
@@ -19,10 +19,10 @@ KERNEL_EXTRA_ARGS += "LOADADDR=${UBOOT_ENTRYPOINT}"
 
 S = "${WORKDIR}/linux-${PV}"
 	
-SRC_URI[md5sum] = "86f56f586f35ac3a98e086dccfd2ff99"
-SRC_URI[sha256sum] = "6f0a7b3abd48eca3df5e29bfbcfc1c06dd2792f86d23cdb9ad37cf3e572df2e3"
+SRC_URI[md5sum] = "911065be61e90bc9afefd2c0ffa944c1"
+SRC_URI[sha256sum] = "43bfea3a6b24b4e5f63190409a199bee8cb93dbea01c52ad7f017078ebdf7c9b"
 
-SRC_URI = "https://www.kernel.org/pub/linux/kernel/v4.x/linux-${PV}.tar.xz \
+SRC_URI = "https://www.kernel.org/pub/linux/kernel/v5.x/linux-${PV}.tar.xz \
         file://0003-ARM-dts-nanopi-neo-air-Add-WiFi-eMMC.patch \
         file://defconfig \
         "
