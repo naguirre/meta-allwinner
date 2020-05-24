@@ -13,6 +13,14 @@ inherit image_types
 #
 #
 
+# This image uses an external /boot partition, we just keep the mount point in
+# the rootfs
+rm_bootdir() {
+	rm -rf "${IMAGE_ROOTFS}/boot"
+	mkdir "${IMAGE_ROOTFS}/boot"
+}
+ROOTFS_POSTPROCESS_COMMAND += "rm_bootdir; "
+
 # This image depends on the rootfs image
 IMAGE_TYPEDEP_sunxi-sdimg = "${SDIMG_ROOTFS_TYPE}"
 
